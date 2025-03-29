@@ -22,12 +22,16 @@ int main(int argc, char *argv[]) {
         std::string file_contents = read_file_contents(argv[2]);
         
         if (!file_contents.empty()) {
-            for (char ch : file_contents) {
-                switch (ch) {
+            for (char token : file_contents) {
+                switch (token) {
                     case '(': std::cout << "LEFT_PAREN ( null" << std::endl; break;
                     case ')': std::cout << "RIGHT_PAREN ) null" << std::endl; break;
                     case '{': std::cout << "LEFT_BRACE { null" << std::endl; break;
                     case '}': std::cout << "RIGHT_BRACE } null" << std::endl; break;
+                    case '+': std::cout << "PLUS + null" << std::endl; break;
+                    case '*': std::cout << "STAR * null" << std::endl; break;
+                    case '.': std::cout << "DOT . null" << std::endl; break;
+                    case ',': std::cout << "COMMA , null" << std::endl; break;
                     default: break;
                 }
             }
