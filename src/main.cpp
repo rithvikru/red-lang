@@ -23,11 +23,12 @@ int main(int argc, char *argv[]) {
         
         if (!file_contents.empty()) {
             for (char ch : file_contents) {
-                if (ch == '(') {
-                    std::cout << "LEFT_PAREN ( null" << std::endl;
-                }
-                else if (ch == ')') {
-                    std::cout << "RIGHT_PAREN ) null" << std::endl;
+                switch (ch) {
+                    case '(': std::cout << "LEFT_PAREN ( null" << std::endl; break;
+                    case ')': std::cout << "RIGHT_PAREN ) null" << std::endl; break;
+                    case '{': std::cout << "LEFT_BRACE { null" << std::endl; break;
+                    case '}': std::cout << "RIGHT_BRACE } null" << std::endl; break;
+                    default: break;
                 }
             }
         }
