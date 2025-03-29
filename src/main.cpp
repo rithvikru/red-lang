@@ -22,7 +22,14 @@ int main(int argc, char *argv[]) {
         std::string file_contents = read_file_contents(argv[2]);
         
         if (!file_contents.empty()) {
-            std::cout << file_contents << std::endl;
+            for (char ch : file_contents) {
+                if (ch == '(') {
+                    std::cout << "LEFT_PAREN ( null" << std::endl;
+                }
+                else if (ch == ')') {
+                    std::cout << "RIGHT_PAREN ) null" << std::endl;
+                }
+            }
             return 1;
         }
         std::cout << "EOF  null" << std::endl; // Placeholder, remove this line when implementing the scanner
