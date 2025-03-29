@@ -36,12 +36,13 @@ int main(int argc, char *argv[]) {
                         case '.': std::cout << "DOT . null" << std::endl; break;
                         case ',': std::cout << "COMMA , null" << std::endl; break;
                         case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
-                        default: std::cout << "[line " << line << "] Error: Unexpected character: " << token << std::endl; break;
+                        default: std::cout << "[line " << line << "] Error: Unexpected character: " << token << std::endl; return 65;
                     }
                 }
             }
         }
         std::cout << "EOF  null" << std::endl; // Placeholder, remove this line when implementing the scanner
+        return 0;
         
     } else {
         std::cerr << "Unknown command: " << command << std::endl;
