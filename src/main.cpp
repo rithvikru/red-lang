@@ -36,7 +36,14 @@ int main(int argc, char *argv[]) {
                     case '-': std::cout << "MINUS - null" << std::endl; break;
                     case '*': std::cout << "STAR * null" << std::endl; break;
                     case '/': std::cout << "SLASH / null" << std::endl; break;
-                    case '=': std::cout << file_contents[i + 1] == '=' ? "EQUAL_EQUAL == null" : "EQUAL = null" << std::endl; break;
+                    case '=':
+                        if (file_contents[i + 1] == '=') {
+                            std::cout << "EQUAL_EQUAL == null" << std::endl;
+                            ++i;
+                        } else {
+                            std::cout << "EQUAL = null" << std::endl;
+                        }
+                        break;
                     case '.': std::cout << "DOT . null" << std::endl; break;
                     case ',': std::cout << "COMMA , null" << std::endl; break;
                     case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
