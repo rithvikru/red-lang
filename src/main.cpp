@@ -25,7 +25,8 @@ int main(int argc, char *argv[]) {
         
         if (!file_contents.empty()) {
 
-            for (char token : file_contents) {
+            for (int i = 0; i < file_contents.length(); i++) {
+                char token = file_contents[i];
                 switch (token) {
                     case '(': std::cout << "LEFT_PAREN ( null" << std::endl; break;
                     case ')': std::cout << "RIGHT_PAREN ) null" << std::endl; break;
@@ -35,7 +36,7 @@ int main(int argc, char *argv[]) {
                     case '-': std::cout << "MINUS - null" << std::endl; break;
                     case '*': std::cout << "STAR * null" << std::endl; break;
                     case '/': std::cout << "SLASH / null" << std::endl; break;
-                    case '=': std::cout << "EQUAL = null" << std::endl; break;
+                    case '=': std::cout << file_contents[i + 1] == '=' ? "EQUAL_EQUAL == null" : "EQUAL = null" << std::endl; break;
                     case '.': std::cout << "DOT . null" << std::endl; break;
                     case ',': std::cout << "COMMA , null" << std::endl; break;
                     case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
