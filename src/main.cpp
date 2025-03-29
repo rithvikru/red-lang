@@ -30,7 +30,6 @@ int main(int argc, char *argv[]) {
                     std::cout << "RIGHT_PAREN ) null" << std::endl;
                 }
             }
-            return 1;
         }
         std::cout << "EOF  null" << std::endl; // Placeholder, remove this line when implementing the scanner
         
