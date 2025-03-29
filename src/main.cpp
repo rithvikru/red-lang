@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
                     case '.': std::cout << "DOT . null" << std::endl; break;
                     case ',': std::cout << "COMMA , null" << std::endl; break;
                     case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
-                    default: std::cout << "[line 1] Error: Unexpected character: " << token << std::endl; return 65;
+                    default: std::cerr << "[line 1] Error: Unexpected character: " << token << std::endl; return 65;
                 }
             }
         }
