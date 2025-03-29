@@ -35,6 +35,7 @@ int main(int argc, char *argv[]) {
                     case '-': std::cout << "MINUS - null" << std::endl; break;
                     case '*': std::cout << "STAR * null" << std::endl; break;
                     case '/': std::cout << "SLASH / null" << std::endl; break;
+                    case '=': std::cout << "EQUAL = null" << std::endl; break;
                     case '.': std::cout << "DOT . null" << std::endl; break;
                     case ',': std::cout << "COMMA , null" << std::endl; break;
                     case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
