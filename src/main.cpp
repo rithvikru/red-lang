@@ -22,22 +22,21 @@ int main(int argc, char *argv[]) {
         std::string file_contents = read_file_contents(argv[2]);
         
         if (!file_contents.empty()) {
-            for (int line = 1; line <= 1; line++) {
-                for (char token : file_contents) {
-                    switch (token) {
-                        case '(': std::cout << "LEFT_PAREN ( null" << std::endl; break;
-                        case ')': std::cout << "RIGHT_PAREN ) null" << std::endl; break;
-                        case '{': std::cout << "LEFT_BRACE { null" << std::endl; break;
-                        case '}': std::cout << "RIGHT_BRACE } null" << std::endl; break;
-                        case '+': std::cout << "PLUS + null" << std::endl; break;
-                        case '-': std::cout << "MINUS - null" << std::endl; break;
-                        case '*': std::cout << "STAR * null" << std::endl; break;
-                        case '/': std::cout << "SLASH / null" << std::endl; break;
-                        case '.': std::cout << "DOT . null" << std::endl; break;
-                        case ',': std::cout << "COMMA , null" << std::endl; break;
-                        case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
-                        default: std::cout << "[line " << line << "] Error: Unexpected character: " << token << std::endl; return 65;
-                    }
+
+            for (char token : file_contents) {
+                switch (token) {
+                    case '(': std::cout << "LEFT_PAREN ( null" << std::endl; break;
+                    case ')': std::cout << "RIGHT_PAREN ) null" << std::endl; break;
+                    case '{': std::cout << "LEFT_BRACE { null" << std::endl; break;
+                    case '}': std::cout << "RIGHT_BRACE } null" << std::endl; break;
+                    case '+': std::cout << "PLUS + null" << std::endl; break;
+                    case '-': std::cout << "MINUS - null" << std::endl; break;
+                    case '*': std::cout << "STAR * null" << std::endl; break;
+                    case '/': std::cout << "SLASH / null" << std::endl; break;
+                    case '.': std::cout << "DOT . null" << std::endl; break;
+                    case ',': std::cout << "COMMA , null" << std::endl; break;
+                    case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
+                    default: std::cout << "[line 1] Error: Unexpected character: " << token << std::endl; return 65;
                 }
             }
         }
