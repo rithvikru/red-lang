@@ -39,14 +39,13 @@ int main(int argc, char *argv[]) {
                     case '"':
                         token_type = "STRING"; lexeme = "\""; literal = "";
                         ++i;
-                        while (i < file_contents.length()) {
+                        for (i < file_contents.length(); ++i) {
                             if (file_contents[i] == '"') {
                                 lexeme += "\"";
                                 break;
                             }
                             literal += file_contents[i];
                             lexeme += file_contents[i];
-                            ++i;
                         }
                         if (i == file_contents.length()) {
                             std::cerr << "[line " << line << "] Error: Unterminated string" << std::endl;
