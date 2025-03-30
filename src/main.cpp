@@ -39,7 +39,8 @@ int main(int argc, char *argv[]) {
                     case '"':
                         token_type = "STRING"; lexeme = "\""; literal = "";
                         ++i;
-                        for (i < file_contents.length(); ++i) {
+                        while (i < file_contents.length()) {
+                            ++i;
                             if (file_contents[i] == '"') {
                                 lexeme += "\"";
                                 break;
