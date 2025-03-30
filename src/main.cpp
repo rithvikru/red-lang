@@ -49,8 +49,7 @@ int main(int argc, char *argv[]) {
                         }
                         if (i == file_contents.length()) {
                             std::cerr << "[line " << line << "] Error: Unterminated string." << std::endl;
-                            token_type = lexeme = literal = nullptr;
-                            code = 65;
+                            continue;
                         }
                         break;
                     case ' ': case '\t': break;
