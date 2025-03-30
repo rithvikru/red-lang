@@ -36,6 +36,24 @@ int main(int argc, char *argv[]) {
                     case '+': token_type = "PLUS"; lexeme = "+"; break;
                     case '-': token_type = "MINUS"; lexeme = "-"; break;
                     case '*': token_type = "STAR"; lexeme = "*"; break;
+                    case '"':
+                        token_type = "STRING"; lexeme = "\""; literal = "";
+                        ++i;
+                        while (i < file_contents.length()) {
+                            if (file_contents[i] == '"') {
+                                lexeme += "\"";
+                                break;
+                            }
+                            if (file_contents[i] == '\n') {
+                                std::cerr << "[line " << line << "] Error: Unterminated string" << std::endl;
+                                code = 65;
+                                break;
+                            }
+                            literal += file_contents[i];
+                            lexeme += file_contents[i];
+                            ++i;
+                        }
+                        break;
                     case ' ': case '\t': break;
                     case '\n': ++line; break;
                     case '/': 
