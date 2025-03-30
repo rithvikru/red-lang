@@ -53,6 +53,7 @@ int main(int argc, char *argv[]) {
                             lexeme += file_contents[i];
                             ++i;
                         }
+                        std::cout << token_type << " " << lexeme << " " << literal << std::endl;
                         break;
                     case ' ': case '\t': break;
                     case '\n': ++line; break;
