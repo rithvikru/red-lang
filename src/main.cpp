@@ -52,6 +52,22 @@ int main(int argc, char *argv[]) {
                             std::cout << "BANG ! null" << std::endl;
                         }
                         break;
+                    case '<':
+                        if (file_contents[i + 1] == '=') {
+                            std::cout << "LESS_EQUAL <= null" << std::endl;
+                            ++i;
+                        } else {
+                            std::cout << "LESS < null" << std::endl;
+                        }
+                        break;
+                    case '>':
+                        if (file_contents[i + 1] == '=') {
+                            std::cout << "GREATER_EQUAL >= null" << std::endl;
+                            ++i;
+                        } else {
+                            std::cout << "GREATER > null" << std::endl;
+                        }
+                        break;
                     case '.': std::cout << "DOT . null" << std::endl; break;
                     case ',': std::cout << "COMMA , null" << std::endl; break;
                     case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
