@@ -36,13 +36,14 @@ int main(int argc, char *argv[]) {
                     case '-': std::cout << "MINUS - null" << std::endl; break;
                     case '*': std::cout << "STAR * null" << std::endl; break;
                     case ' ': break;
-                    case '\n': line++; break;
+                    case '\n': ++line; break;
                     case '\t': break;
                     case '/': 
                         if (file_contents[i + 1] == '/') {
                             while (i < file_contents.length() && file_contents[i] != '\n') {
                                 ++i;
                             }
+                            ++line;
                         } else {
                             std::cout << "SLASH / null" << std::endl;
                         }
