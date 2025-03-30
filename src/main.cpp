@@ -40,23 +40,20 @@ int main(int argc, char *argv[]) {
                         token_type = "STRING"; lexeme = "\""; literal = "";
                         ++i;
                         while (i < file_contents.length()) {
-                            if (file_contents[i] == '\n') {
-                                line++;
-                            }
-                            else if (file_contents[i] == '"') {
+                            if (file_contents[i] == '"') {
                                 lexeme += "\"";
-                                break;
-                            }
-                            else if (file_contents[i] == '\n') {
-                                std::cerr << "[line " << line << "] Error: Unterminated string" << std::endl;
-                                code = 65;
                                 break;
                             }
                             literal += file_contents[i];
                             lexeme += file_contents[i];
                             ++i;
                         }
-                        std::cout << token_type << " " << lexeme << " " << literal << std::endl;
+                        if (i == file_contents.length()) {
+                            std::cerr << "[line " << line << "] Error: Unterminated string" << std::endl;
+                            code = 65;
+                        } else {
+                            std::cout << token_type << " " << lexeme << " " << literal << std::endl;
+                        }
                         break;
                     case ' ': case '\t': break;
                     case '\n': ++line; break;
