@@ -50,8 +50,6 @@ int main(int argc, char *argv[]) {
                         if (i == file_contents.length()) {
                             std::cerr << "[line " << line << "] Error: Unterminated string" << std::endl;
                             code = 65;
-                        } else {
-                            std::cout << token_type << " " << lexeme << " " << literal << std::endl;
                         }
                         break;
                     case ' ': case '\t': break;
