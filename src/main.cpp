@@ -27,8 +27,7 @@ int main(int argc, char *argv[]) {
         if (!file_contents.empty()) {
             for (int i = 0; i < file_contents.length(); ++i) {
                 char token = file_contents[i];
-                std::string token_type, lexeme;
-                std::string literal = null;
+                std::string token_type, lexeme, literal;
                 switch (token) {
                     case '(': token_type = "LEFT_PAREN"; lexeme = "("; break;
                     case ')': token_type = "RIGHT_PAREN"; lexeme = ")"; break;
