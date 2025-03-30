@@ -49,7 +49,8 @@ int main(int argc, char *argv[]) {
                             }
                             else if (file_contents[i] == '\n') {
                                 std::cerr << "[line " << line << "] Error: Unterminated string" << std::endl;
-                                return 65;
+                                code = 65;
+                                break;
                             }
                             literal += file_contents[i];
                             lexeme += file_contents[i];
