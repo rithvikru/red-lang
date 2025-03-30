@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
                             lexeme += file_contents[i];
                         }
                         if (i == file_contents.length()) {
-                            std::cerr << "[line " << line << "] Error: Unterminated string" << std::endl;
+                            std::cerr << "[line " << line << "] Error: Unterminated string." << std::endl;
                             token_type = "", lexeme = "", literal = "";
                             code = 65;
                         }
