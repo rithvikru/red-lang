@@ -35,6 +35,9 @@ int main(int argc, char *argv[]) {
                         case '+': std::cout << "PLUS + null" << std::endl; break;
                         case '-': std::cout << "MINUS - null" << std::endl; break;
                         case '*': std::cout << "STAR * null" << std::endl; break;
+                        case ' ': break;
+                        case '\n': break;
+                        case '\t': break;
                         case '/': 
                             if (file_contents[i + 1] == '/') {
                                 goto end_of_line;
