@@ -44,6 +44,14 @@ int main(int argc, char *argv[]) {
                             std::cout << "EQUAL = null" << std::endl;
                         }
                         break;
+                    case '!':
+                        if (file_contents[i + 1] == '=') {
+                            std::cout << "BANG_EQUAL != null" << std::endl;
+                            ++i;
+                        } else {
+                            std::cout << "BANG ! null" << std::endl;
+                        }
+                        break;
                     case '.': std::cout << "DOT . null" << std::endl; break;
                     case ',': std::cout << "COMMA , null" << std::endl; break;
                     case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
