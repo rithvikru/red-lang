@@ -49,6 +49,7 @@ int main(int argc, char *argv[]) {
                         }
                         if (i == file_contents.length()) {
                             std::cerr << "[line " << line << "] Error: Unterminated string." << std::endl;
+                            code = 65;
                             continue;
                         }
                         break;
