@@ -38,7 +38,6 @@ int main(int argc, char *argv[]) {
                     case '*': token_type = "STAR"; lexeme = "*"; break;
                     case '"':
                         token_type = "STRING"; lexeme = "\""; literal = "";
-                        ++i;
                         while (i < file_contents.length()) {
                             ++i;
                             if (file_contents[i] == '"') {
