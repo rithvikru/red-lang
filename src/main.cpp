@@ -27,17 +27,17 @@ int main(int argc, char *argv[]) {
         if (!file_contents.empty()) {
             for (int i = 0; i < file_contents.length(); ++i) {
                 char token = file_contents[i];
+                std::string token_type, lexeme, literal = null;
                 switch (token) {
-                    case '(': std::cout << "LEFT_PAREN ( null" << std::endl; break;
-                    case ')': std::cout << "RIGHT_PAREN ) null" << std::endl; break;
-                    case '{': std::cout << "LEFT_BRACE { null" << std::endl; break;
-                    case '}': std::cout << "RIGHT_BRACE } null" << std::endl; break;
-                    case '+': std::cout << "PLUS + null" << std::endl; break;
-                    case '-': std::cout << "MINUS - null" << std::endl; break;
-                    case '*': std::cout << "STAR * null" << std::endl; break;
-                    case ' ': break;
+                    case '(': token_type = "LEFT_PAREN"; lexeme = "("; break;
+                    case ')': token_type = "RIGHT_PAREN"; lexeme = ")"; break;
+                    case '{': token_type = "LEFT_BRACE"; lexeme = "{"; break;
+                    case '}': token_type = "RIGHT_BRACE"; lexeme = "}"; break;
+                    case '+': token_type = "PLUS"; lexeme = "+"; break;
+                    case '-': token_type = "MINUS"; lexeme = "-"; break;
+                    case '*': token_type = "STAR"; lexeme = "*"; break;
+                    case ' ': case '\t': break;
                     case '\n': ++line; break;
-                    case '\t': break;
                     case '/': 
                         if (file_contents[i + 1] == '/') {
                             while (i < file_contents.length() && file_contents[i] != '\n') {
@@ -45,46 +45,47 @@ int main(int argc, char *argv[]) {
                             }
                             ++line;
                         } else {
-                            std::cout << "SLASH / null" << std::endl;
+                            token_type = "SLASH"; lexeme = "/";
                         }
                         break;
                     case '=':
                         if (file_contents[i + 1] == '=') {
-                            std::cout << "EQUAL_EQUAL == null" << std::endl;
+                            token_type = "EQUAL_EQUAL"; lexeme = "==";
                             ++i;
                         } else {
-                            std::cout << "EQUAL = null" << std::endl;
+                            token_type = "EQUAL"; lexeme = "=";
                         }
                         break;
                     case '!':
                         if (file_contents[i + 1] == '=') {
-                            std::cout << "BANG_EQUAL != null" << std::endl;
+                            token_type = "BANG_EQUAL"; lexeme = "!=";
                             ++i;
                         } else {
-                            std::cout << "BANG ! null" << std::endl;
+                            token_type = "BANG"; lexeme = "!";
                         }
                         break;
                     case '<':
                         if (file_contents[i + 1] == '=') {
-                            std::cout << "LESS_EQUAL <= null" << std::endl;
+                            token_type = "LESS_EQUAL"; lexeme = "<=";
                             ++i;
                         } else {
-                            std::cout << "LESS < null" << std::endl;
+                            token_type = "LESS"; lexeme = "<";
                         }
                         break;
                     case '>':
                         if (file_contents[i + 1] == '=') {
-                            std::cout << "GREATER_EQUAL >= null" << std::endl;
+                            token_type = "GREATER_EQUAL"; lexeme = ">=";
                             ++i;
                         } else {
-                            std::cout << "GREATER > null" << std::endl;
+                            token_type = "GREATER"; lexeme = ">";
                         }
                         break;
-                    case '.': std::cout << "DOT . null" << std::endl; break;
-                    case ',': std::cout << "COMMA , null" << std::endl; break;
-                    case ';': std::cout << "SEMICOLON ; null" << std::endl; break;
+                    case '.': token_type = "DOT"; lexeme = "."; break;
+                    case ',': token_type = "COMMA"; lexeme = ","; break;
+                    case ';': token_type = "SEMICOLON"; lexeme = ";"; break;
                     default: std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl; code = 65; break;
                 }
+                std::cout << token_type << " " << lexeme << " " << literal << std::endl;
             }
         }
 
