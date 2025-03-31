@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
                     case '+': token_type = "PLUS"; lexeme = "+"; break;
                     case '-': token_type = "MINUS"; lexeme = "-"; break;
                     case '*': token_type = "STAR"; lexeme = "*"; break;
-                    case '"':
+                    case '"': {
                         token_type = "STRING"; lexeme = "\""; literal = "";
                         while (i < file_contents.length()) {
                             ++i;
@@ -53,9 +53,10 @@ int main(int argc, char *argv[]) {
                             continue;
                         }
                         break;
+                    }
                     case ' ': case '\t': break;
                     case '\n': ++line; break;
-                    case '/': 
+                    case '/': {
                         if (file_contents[i + 1] == '/') {
                             while (i < file_contents.length() && file_contents[i] != '\n') {
                                 ++i;
@@ -65,7 +66,8 @@ int main(int argc, char *argv[]) {
                             token_type = "SLASH"; lexeme = "/";
                         }
                         break;
-                    case '=':
+                    }
+                    case '=': {
                         if (file_contents[i + 1] == '=') {
                             token_type = "EQUAL_EQUAL"; lexeme = "==";
                             ++i;
@@ -73,7 +75,8 @@ int main(int argc, char *argv[]) {
                             token_type = "EQUAL"; lexeme = "=";
                         }
                         break;
-                    case '!':
+                    }
+                    case '!': {
                         if (file_contents[i + 1] == '=') {
                             token_type = "BANG_EQUAL"; lexeme = "!=";
                             ++i;
@@ -81,7 +84,8 @@ int main(int argc, char *argv[]) {
                             token_type = "BANG"; lexeme = "!";
                         }
                         break;
-                    case '<':
+                    }
+                    case '<': {
                         if (file_contents[i + 1] == '=') {
                             token_type = "LESS_EQUAL"; lexeme = "<=";
                             ++i;
@@ -89,7 +93,8 @@ int main(int argc, char *argv[]) {
                             token_type = "LESS"; lexeme = "<";
                         }
                         break;
-                    case '>':
+                    }
+                    case '>': {
                         if (file_contents[i + 1] == '=') {
                             token_type = "GREATER_EQUAL"; lexeme = ">=";
                             ++i;
@@ -97,26 +102,27 @@ int main(int argc, char *argv[]) {
                             token_type = "GREATER"; lexeme = ">";
                         }
                         break;
-                    case isdigit():
-                        token_type = "NUMBER";
-                        bool has_decimal = false;
-
-                        while (isdigit(file_contents[i]) || file_contents[i] == '.') {
-                            lexeme += file_contents[i];
-                            literal += file_contents[i];
-                            if (file_contents[i] == '.') {
-                                has_decimal = true;
-                            }
-                            ++i;
-                        }
-                        if (!has_decimal) {
-                            literal += ".0";
-                        }
-                        break;
+                    }
                     case '.': token_type = "DOT"; lexeme = "."; break;
                     case ',': token_type = "COMMA"; lexeme = ","; break;
                     case ';': token_type = "SEMICOLON"; lexeme = ";"; break;
-                    default: std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl; code = 65; break;
+                    default: {
+                        if (isdigit(token)) {
+                            token_type = "NUMBER", lexeme = literal = "";
+                            while (i < file_contents.length() && (isdigit(file_contents[i]) || file_contents[i] == '.')) {
+                                ++i;
+                                lexeme += file_contents[i];
+                                literal += file_contents[i];
+                            }
+                            if (lexeme.find('.') == std::string::npos) {
+                                literal += ".0";
+                            }
+                        } else {
+                            std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl;
+                            code = 65;
+                        }
+                        break;
+                    }
                 }
                 if (lexeme != "") {
                     std::cout << token_type << " " << lexeme << " " << literal << std::endl;
