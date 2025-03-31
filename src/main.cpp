@@ -115,9 +115,7 @@ int main(int argc, char *argv[]) {
                                 literal += file_contents[i];
                                 ++i;
                             }
-                            if (lexeme.find('.') == std::string::npos) {
-                                literal += ".0";
-                            }
+                            lexeme = (std::string)(double)lexeme;
                         } else {
                             std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl;
                             code = 65;
