@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cmath>
 
 std::string read_file_contents(const std::string& filename);
 
@@ -115,7 +116,11 @@ int main(int argc, char *argv[]) {
                                 ++i;
                             }
                             double num = std::stod(lexeme);
-                            literal = (num == std::floor(num)) ? std::to_string((int)num) : std::to_string(num);
+                            if (num == std::floor(num)) {
+                                literal = std::to_string((int)num) + ".0";
+                            } else {
+                                literal = std::to_string(num);
+                            }
                         } else {
                             std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl;
                             code = 65;
