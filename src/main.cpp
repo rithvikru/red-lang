@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
         if (!file_contents.empty()) {
             for (int i = 0; i < file_contents.length(); ++i) {
                 char token = file_contents[i];
-                std::string token_type, lexeme, literal;
+                std::string token_type, lexeme, literal = "null";
                 switch (token) {
                     case '(': token_type = "LEFT_PAREN"; lexeme = "("; break;
                     case ')': token_type = "RIGHT_PAREN"; lexeme = ")"; break;
@@ -102,7 +102,9 @@ int main(int argc, char *argv[]) {
                     case ';': token_type = "SEMICOLON"; lexeme = ";"; break;
                     default: std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl; code = 65; break;
                 }
-                std::cout << token_type << " " << lexeme << " " << literal << std::endl;
+                if (lexeme != "") {
+                    std::cout << token_type << " " << lexeme << " " << literal << std::endl;
+                }
             }
         }
 
