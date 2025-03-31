@@ -120,7 +120,7 @@ int main(int argc, char *argv[]) {
                         } else if (isalpha(token) || token == '_') {
                             token_type = "IDENTIFIER", lexeme = token;
                             ++i;
-                            while (i < file_contents.length() && (isalpha(file_contents[i]) || file_contents[i] == '_')) {
+                            while (i < file_contents.length() && (isalnum(file_contents[i]) || file_contents[i] == '_')) {
                                 lexeme += file_contents[i];
                                 ++i;
                             }
