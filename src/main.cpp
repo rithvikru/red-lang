@@ -108,11 +108,12 @@ int main(int argc, char *argv[]) {
                     case ';': token_type = "SEMICOLON"; lexeme = ";"; break;
                     default: {
                         if (isdigit(token)) {
-                            token_type = "NUMBER", lexeme = literal = "";
+                            token_type = "NUMBER", lexeme = literal = token;
+                            ++i;
                             while (i < file_contents.length() && (isdigit(file_contents[i]) || file_contents[i] == '.')) {
-                                ++i;
                                 lexeme += file_contents[i];
                                 literal += file_contents[i];
+                                ++i;
                             }
                             if (lexeme.find('.') == std::string::npos) {
                                 literal += ".0";
