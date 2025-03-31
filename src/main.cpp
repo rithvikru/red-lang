@@ -114,7 +114,7 @@ int main(int argc, char *argv[]) {
                                 lexeme += file_contents[i];
                                 ++i;
                             }
-                            literal = "" + stod(lexeme);
+                            literal = std::to_string(stod(lexeme));
                         } else {
                             std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl;
                             code = 65;
