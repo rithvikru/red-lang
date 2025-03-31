@@ -108,14 +108,13 @@ int main(int argc, char *argv[]) {
                     case ';': token_type = "SEMICOLON"; lexeme = ";"; break;
                     default: {
                         if (isdigit(token)) {
-                            token_type = "NUMBER", lexeme = literal = token;
+                            token_type = "NUMBER", lexeme = token;
                             ++i;
                             while (i < file_contents.length() && (isdigit(file_contents[i]) || file_contents[i] == '.')) {
                                 lexeme += file_contents[i];
-                                literal += file_contents[i];
                                 ++i;
                             }
-                            lexeme = (std::string)(double)lexeme;
+                            literal = "" + stod(lexeme);
                         } else {
                             std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl;
                             code = 65;
