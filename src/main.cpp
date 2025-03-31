@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
                             token_type = "GREATER"; lexeme = ">";
                         }
                         break;
-                    case isdigit(token):
+                    case isdigit():
                         token_type = "NUMBER";
                         bool has_decimal = false;
 
