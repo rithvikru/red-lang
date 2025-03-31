@@ -97,6 +97,22 @@ int main(int argc, char *argv[]) {
                             token_type = "GREATER"; lexeme = ">";
                         }
                         break;
+                    case isdigit(token):
+                        token_type = "NUMBER";
+                        bool has_decimal = false;
+
+                        while (isdigit(file_contents[i]) || file_contents[i] == '.') {
+                            lexeme += file_contents[i];
+                            literal += file_contents[i];
+                            if (file_contents[i] == '.') {
+                                has_decimal = true;
+                            }
+                            ++i;
+                        }
+                        if (!has_decimal) {
+                            literal += ".0";
+                        }
+                        break;
                     case '.': token_type = "DOT"; lexeme = "."; break;
                     case ',': token_type = "COMMA"; lexeme = ","; break;
                     case ';': token_type = "SEMICOLON"; lexeme = ";"; break;
