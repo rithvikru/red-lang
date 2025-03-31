@@ -116,11 +116,15 @@ int main(int argc, char *argv[]) {
                             }
                             --i;
                             double num = std::stod(lexeme);
-                            if (int(num) == num) {
-                                literal = std::to_string((int)num) + ".0";
-                            } else {
-                                literal = lexeme;
+                            literal = (int(num) == num) ? std::to_string((int)num) + ".0" : lexeme;
+                        } else if (isalpha(token) || token == '_') {
+                            token_type = "IDENTIFIER", lexeme = token;
+                            ++i;
+                            while (i < file_contents.length() && (isalpha(file_contents[i]) || file_contents[i] == '_')) {
+                                lexeme += file_contents[i];
+                                ++i;
                             }
+                            --i;
                         } else {
                             std::cerr << "[line " << line << "] Error: Unexpected character: " << token << std::endl;
                             code = 65;
