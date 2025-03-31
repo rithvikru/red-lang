@@ -114,6 +114,7 @@ int main(int argc, char *argv[]) {
                                 lexeme += file_contents[i];
                                 ++i;
                             }
+                            --i;
                             double num = std::stod(lexeme);
                             if (int(num) == num) {
                                 literal = std::to_string((int)num) + ".0";
