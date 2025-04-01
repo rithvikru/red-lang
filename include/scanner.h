@@ -17,6 +17,7 @@ class Scanner {
         int start, end, current, line;
 
         std::vector<std::shared_ptr<Token>> tokens;
+        std::map<std::string, TokenType> keywords;
 
         bool is_end() const;
         static bool is_alpha(char c);

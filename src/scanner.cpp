@@ -89,7 +89,13 @@ void Scanner::handle_identifier() {
         this->advance();
     }
 
-    this->tokens.emplace_back(new Token(IDENTIFIER, this->source.substr(this->start, this->current - this->start), Literal(), this->line));
+    std::string text = this->source.substr(this->start, this->current - this->start);
+    TokenType type = this->keywords[text];
+    if (type == NULL) {
+        type = IDENTIFIER;
+    }
+
+    this->tokens.emplace_back(new Token(type, text, Literal(), this->line));
 }
 
 void Scanner::scan_token() {
@@ -157,4 +163,22 @@ std::vector<std::shared_ptr<Token>> Scanner::scan_tokens() {
 
 Scanner::Scanner(const std::string& source) : source(source), start(0), current(0), line(1) {
     this->end = source.length();
+    this->keywords = {
+        {"and", AND},
+        {"class", CLASS},
+        {"else", ELSE},
+        {"false", FALSE},
+        {"for", FOR},
+        {"fun", FUN},
+        {"if", IF},
+        {"nil", NIL},
+        {"or", OR},
+        {"print", PRINT},
+        {"return", RETURN},
+        {"super", SUPER},
+        {"this", THIS},
+        {"true", TRUE},
+        {"var", VAR},
+        {"while", WHILE}
+    };
 }
