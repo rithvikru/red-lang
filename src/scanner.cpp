@@ -11,11 +11,11 @@ bool Scanner::is_digit(char c) {
 }
 
 bool Scanner::is_alpha(char c) {
-    return isalpha(c);
+    return isalpha(c) || c == '_';
 }
 
 bool Scanner::is_aldigit(char c) {
-    return isalnum(c) || c == '_';
+    return is_alpha(c) || is_digit(c);
 }
 
 char Scanner::advance() {
