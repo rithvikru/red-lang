@@ -54,6 +54,7 @@ void Scanner::handle_string() {
     }
     if (this->is_end()) {
         std::cerr << "[line " << this->line << "] Error: Unterminated string." << std::endl;
+        this->error_type = ErrorType::UNTERMINATED_STRING;
         return;
     }
 
@@ -144,6 +145,7 @@ void Scanner::scan_token() {
                 this->handle_identifier();
             } else {
                 std::cerr << "[line " << this->line << "] Error: Unexpected character: " << c << std::endl;
+                this->error_type = ErrorType::UNEXPECTED_CHARACTER;
                 return;
             }
         }
@@ -161,24 +163,21 @@ std::vector<std::shared_ptr<Token>> Scanner::scan_tokens() {
     return std::move(this->tokens);
 }
 
-Scanner::Scanner(const std::string& source) : source(source), start(0), current(0), line(1) {
-    this->end = source.length();
-    this->keywords = {
-        {"and", AND},
-        {"class", CLASS},
-        {"else", ELSE},
-        {"false", FALSE},
-        {"for", FOR},
-        {"fun", FUN},
-        {"if", IF},
-        {"nil", NIL},
-        {"or", OR},
-        {"print", PRINT},
-        {"return", RETURN},
-        {"super", SUPER},
-        {"this", THIS},
-        {"true", TRUE},
-        {"var", VAR},
-        {"while", WHILE}
-    };
+Scanner::Scanner(const std::string& source) : source(source), start(0), current(0), line(1), error_type(ErrorType::NONE) {
+    keywords["and"] = AND;
+    keywords["class"] = CLASS;
+    keywords["else"] = ELSE;
+    keywords["false"] = FALSE;
+    keywords["for"] = FOR;
+    keywords["fun"] = FUN;
+    keywords["if"] = IF;
+    keywords["nil"] = NIL;
+    keywords["or"] = OR;
+    keywords["print"] = PRINT;
+    keywords["return"] = RETURN;
+    keywords["super"] = SUPER;
+    keywords["this"] = THIS;
+    keywords["true"] = TRUE;
+    keywords["var"] = VAR;
+    keywords["while"] = WHILE;
 }

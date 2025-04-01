@@ -26,6 +26,19 @@ int main(int argc, char *argv[]) {
         std::vector<std::shared_ptr<Token>> tokens = scanner.scan_tokens();
         
         int code = 0;
+        if (scanner.had_error()) {
+            switch (scanner.get_error_type()) {
+                case ErrorType::UNTERMINATED_STRING:
+                    code = 65;
+                    break;
+                case ErrorType::UNEXPECTED_CHARACTER:
+                    code = 65;
+                    break;
+                default:
+                    code = 0;
+                    break;
+            }
+        }
         
         for (const auto& token : tokens) {
             std::cout << token->to_string() << std::endl;
