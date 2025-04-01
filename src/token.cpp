@@ -77,7 +77,15 @@ std::string Token::to_string() const
             break;
         case NUMBER:
             token_string = "NUMBER " + this->lexeme;
-            token_string += " " + std::to_string(this->literal.number_value);
+            {
+                std::ostringstream ss;
+                if (this->lexeme.find('.') == std::string::npos) {
+                    ss << this->literal.number_value << ".0";
+                } else {
+                    ss << this->literal.number_value;
+                }
+                token_string += " " + ss.str();
+            }
             break;
         case IDENTIFIER:
             token_string = "IDENTIFIER " + token_string;
@@ -86,5 +94,5 @@ std::string Token::to_string() const
             break;
     }
 
-    return token_string;
+    return token_string;    
 }

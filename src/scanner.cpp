@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../include/scanner.h"
 
 bool Scanner::is_end() const {
@@ -67,7 +65,7 @@ void Scanner::handle_number() {
 
     std::string s_num = this->source.substr(this->start, this->current - this->start);
     Literal literal;
-    literal.number_value = stod(s_num);
+    literal.number_value = std::stod(s_num);
 
     this->tokens.emplace_back(new Token(NUMBER, s_num, literal, this->line));
 }

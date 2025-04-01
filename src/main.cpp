@@ -3,9 +3,6 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <vector>
-#include <memory>
-
 #include "../include/scanner.h"
 
 std::string read_file_contents(const std::string& filename);
