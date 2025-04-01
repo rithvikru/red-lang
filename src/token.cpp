@@ -91,9 +91,58 @@ std::string Token::to_string() const
         case IDENTIFIER:
             token_string = "IDENTIFIER " + token_string;
             break;
+
+        case AND:
+            token_string = "AND " + token_string;
+            break;
+        case CLASS:
+            token_string = "CLASS " + token_string;
+            break;
+        case IF:
+            token_string = "IF " + token_string;
+            break;
+        case ELSE:
+            token_string = "ELSE " + token_string;
+            break;
+        case TRUE:
+            token_string = "TRUE " + token_string;
+            break;
+        case FALSE:
+            token_string = "FALSE " + token_string;
+            break;
+        case FOR:
+            token_string = "FOR " + token_string;
+            break;
+        case FUN:
+            token_string = "FUN " + token_string;
+            break;
+        case NIL:
+            token_string = "NIL " + token_string;
+            break;
+        case OR:
+            token_string = "OR " + token_string;
+            break;
+        case PRINT:
+            token_string = "PRINT " + token_string;
+            break;
+        case RETURN:
+            token_string = "RETURN " + token_string;
+            break;
+        case SUPER:
+            token_string = "SUPER " + token_string;
+            break;
+        case THIS:
+            token_string = "THIS " + token_string;
+            break;
+        case VAR:
+            token_string = "VAR " + token_string;
+            break;
+        case WHILE:
+            token_string = "WHILE " + token_string;
+            break;
+
         default:
             break;
     }
-
     return token_string;    
 }
