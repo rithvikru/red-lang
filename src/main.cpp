@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    return code;
+    return 0;
 }
 
 std::string read_file_contents(const std::string& filename) {
