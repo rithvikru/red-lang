@@ -17,6 +17,8 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    int code = 0;
+
     const std::string command = argv[1];
 
     if (command == "tokenize") {
@@ -25,7 +27,6 @@ int main(int argc, char *argv[]) {
         Scanner scanner(file_contents);
         std::vector<std::shared_ptr<Token>> tokens = scanner.scan_tokens();
         
-        int code = 0;
         if (scanner.had_error()) {
             switch (scanner.get_error_type()) {
                 case ErrorType::UNTERMINATED_STRING:
@@ -51,7 +52,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    return 0;
+    return code;
 }
 
 std::string read_file_contents(const std::string& filename) {
