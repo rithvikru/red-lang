@@ -1,0 +1,91 @@
+#include "../include/token.h"
+#include <sstream>
+#include <utility>
+
+Token::Token(TokenType type, std::string lexeme, Literal literal, int line) : type(type), lexeme(lexeme), literal(literal), line(line) {}
+
+std::string Token::to_string() const
+{
+    std::string token_string;
+    switch (this->type)
+    {
+        case LEFT_PAREN :
+            token_string = "LEFT_PAREN";
+            break;
+        case RIGHT_PAREN:
+            token_string = "RIGHT_PAREN";
+            break;
+        case LEFT_BRACE:
+            token_string = "LEFT_BRACE";
+            break;
+        case RIGHT_BRACE:
+            token_string = "RIGHT_BRACE";
+            break;
+        case COMMA:
+            token_string = "COMMA";
+            break;
+        case DOT:
+            token_string = "DOT";
+            break;
+        case MINUS:
+            token_string = "MINUS";
+            break;
+        case PLUS:
+            token_string = "PLUS";
+            break;
+        case SEMICOLON:
+            token_string = "SEMICOLON";
+            break;
+        case SLASH:
+            token_string = "SLASH";
+            break;
+        case STAR:
+            token_string = "STAR";
+            break;
+        case BANG:
+            token_string = "BANG";
+            break;
+        case BANG_EQUAL:
+            token_string = "BANG_EQUAL";
+            break;
+        case EQUAL:
+            token_string = "EQUAL";
+            break;
+        case EQUAL_EQUAL:
+            token_string = "EQUAL_EQUAL";
+            break;
+        case GREATER:
+            token_string = "GREATER";
+            break;
+        case GREATER_EQUAL:
+            token_string = "GREATER_EQUAL";
+            break;
+        case LESS:
+            token_string = "LESS";
+            break;
+        case LESS_EQUAL:
+            token_string = "LESS_EQUAL";
+            break;
+
+        case ENDOFFILE:
+            token_string = "ENDOFFILE";
+            break;
+
+        case STRING:
+            token_string = "STRING";
+            token_string += " " + this->literal.string_value;
+            break;
+        case NUMBER:
+            token_string = "NUMBER";
+            token_string += " " + this->lexeme;
+            token_string += " " + std::to_string(this->literal.number_value);
+            break;
+        case IDENTIFIER:
+            token_string = "IDENTIFIER";
+            token_string += " " + this->lexeme;
+            break;
+        default:
+            break;
+    }
+    return token_string;
+}
