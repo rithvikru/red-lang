@@ -15,7 +15,7 @@ bool Scanner::is_alpha(char c) {
 }
 
 bool Scanner::is_aldigit(char c) {
-    return isalnum(c);
+    return isalnum(c) || c == '_';
 }
 
 char Scanner::advance() {
