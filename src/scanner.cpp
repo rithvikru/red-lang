@@ -21,33 +21,47 @@ char Scanner::advance() {
 }
 
 char Scanner::peek() {
+    if (this->current >= this->source.length()) {
+        return '\0';
+    }
     return this->source[this->current];
 }
 
 char Scanner::peek_next() {
+    if (this->current + 1 >= this->source.length()) {
+        return '\0';
+    }
     return this->source[this->current + 1];
 }
 
 bool Scanner::match(char c) {
-    if (is_end()) return false;
-    if (this->source[this->current] != c) return false;
-    this->current++;
+    if (is_end()) {
+        return false;
+    }
+    if (this->source[this->current] != c) {
+        return false;
+    }
+    this->advance();
     return true;
 }
 
 void Scanner::handle_string() {
     while (this->peek() != '"' && !this->is_end()) {
-        this->current++;
+        if (this->peek() == '\n') {
+            this->line++;
+        }
+        this->advance();
     }
     if (this->is_end()) {
-        std::cout << "[line " << this->line << " ] Error: Unterminated string." << std::endl;
+        std::cerr << "[line " << this->line << "] Error: Unterminated string." << std::endl;
         return;
     }
 
     Literal literal;
-    literal.string_value = this->source.substr(this->start + 1, this->current - this->start + 1);
+    literal.string_value = this->source.substr(this->start + 1, this->current - this->start - 1);
 
     this->tokens.emplace_back(new Token(STRING, std::string("\"") + literal.string_value + "\"", literal, this->line));
+    this->advance();
 }
 
 void Scanner::handle_number() {
@@ -113,7 +127,7 @@ void Scanner::scan_token() {
             else { this->tokens.emplace_back(new Token(GREATER, ">", Literal(), this->line)); break; }
         }
         case '/': {
-            if (match('/')) { while (peek() != '\n' && !is_end()) this->current++; break; }
+            if (match('/')) { while (peek() != '\n' && !is_end()) this->advance(); break; }
             else { this->tokens.emplace_back(new Token(SLASH, "/", Literal(), this->line)); break; }
         }
         case '"': this->handle_string(); break;
