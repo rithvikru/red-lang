@@ -76,7 +76,14 @@ std::string Token::to_string() const
             token_string += " " + this->literal.string_value;
             break;
         case NUMBER:
-            token_string = "NUMBER " + this->lexeme + " " + std::to_string(this->literal.number_value);
+            double value = this->literal.number_value;
+            std::string number_str;            
+            if (value == static_cast<int>(value)) {
+                number_str = std::to_string(static_cast<int>(value)) + ".0";
+            } else {
+                number_str = this->lexeme;
+            }
+            token_string = "NUMBER " + this->lexeme + " " + number_str;
             break;
         case IDENTIFIER:
             token_string = "IDENTIFIER " + token_string;
