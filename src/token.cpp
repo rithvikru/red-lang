@@ -82,7 +82,12 @@ std::string Token::to_string() const
                 if (this->lexeme.find('.') == std::string::npos) {
                     ss << this->literal.number_value << ".0";
                 } else {
-                    ss << this->literal.number_value;
+                    ss << std::fixed;
+                    if (this->literal.number_value == static_cast<int>(this->literal.number_value)) {
+                        ss << this->literal.number_value << ".0";
+                    } else {
+                        ss << this->literal.number_value;
+                    }
                 }
                 token_string += " " + ss.str();
             }
