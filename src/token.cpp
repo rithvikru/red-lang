@@ -68,7 +68,7 @@ std::string Token::to_string() const
             break;
 
         case ENDOFFILE:
-            token_string = "ENDOFFILE " + token_string;
+            token_string = "EOF " + token_string;
             break;
 
         case STRING:
